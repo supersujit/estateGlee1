@@ -7,7 +7,7 @@ ruby "3.0.4"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -41,6 +41,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+gem 'bootstrap', '~> 5.2.2'
+gem 'jquery-rails'
 
 gem 'devise'
 
