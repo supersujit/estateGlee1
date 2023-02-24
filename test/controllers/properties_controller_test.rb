@@ -64,4 +64,13 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_equal @user.id, created_comment.user_id
     assert_equal @property.id, created_comment.property_id
   end
+
+  test 'should update the status of the property' do
+    assert_difference("StatusUpdate.count") do
+      post update_property_status_url(@property), params: { status: StatusUpdate.statuses[:viewing] }
+    end
+    status_update = StatusUpdate.last
+    assert_equal :viewing, status_update.status.to_sym
+    assert_equal @property.current_status, status_update
+  end
 end
