@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy comments new_comment create_comment]
+  before_action :set_property, only: %i[ show edit update destroy comments new_comment create_comment history_items]
 
   # GET /properties or /properties.json
   def index
@@ -68,6 +68,10 @@ class PropertiesController < ApplicationController
   def create_comment
     @property.comments.create(user: current_user, title: comments_params[:title], body: comments_params[:body])
     redirect_to get_property_comments_url(@property)
+  end
+
+  def history_items
+    @history_items = @property.history_items.order(created_at: :desc)
   end
 
   private

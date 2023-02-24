@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @property %>
+<div class="row g-5">
+  <div class="col-md-6 justify-content-between">
+    <h2>History Items</h2>
+  </div>
+</div>
+
+<div class="list-group w-auto">
+  <% @history_items.each do |history_item| %>
+    <%= render partial: 'history_item', locals: { history_item: history_item } %>
+  <% end %>
+</div>

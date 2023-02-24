@@ -4,6 +4,7 @@ class StatusUpdate < ApplicationRecord
   enum status: [:listed, :viewing, :financing, :payment, :sold]
 
   belongs_to :property
+  belongs_to :user
 
   private
 
