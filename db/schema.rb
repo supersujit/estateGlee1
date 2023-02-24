@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_012334) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_113956) do
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_012334) do
     t.integer "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "summary"
     t.index ["property_id"], name: "index_history_items_on_property_id"
   end
 

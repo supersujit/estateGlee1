@@ -1,7 +1,14 @@
 class StatusUpdate < ApplicationRecord
   include RecordHistoryConcern
 
+  enum status: [:listed, :viewing, :financing, :payment, :sold]
+
   belongs_to :property
-  has_many :history_items, as: :historicizable
+
+  private
+
+  def history_item_summary
+    "#{user.email} changed status to: #{status}."
+  end
 
 end
