@@ -3,6 +3,8 @@ require "test_helper"
 class PropertiesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @property = properties(:one)
+    user = users(:one)
+    sign_in user
   end
 
   test "should get index" do
@@ -44,5 +46,21 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to properties_url
+  end
+
+  test 'should get the property comments' do
+    get get_property_comments_url(@property)
+    assert_response :success
+  end
+
+  test 'should create a comment' do
+    assert_difference("Comment.count") do
+      post create_property_comments_url(@property), params: { title: 'foo title', body: 'bar body'}
+    end
+    created_comment = Comment.last
+    assert_equal 'foo title', created_comment.title
+    assert_equal 'bar body', created_comment.body
+    assert_equal current_user.id, created_comment.user_id
+    assert_equal @property.id, created_comment.property_id
   end
 end

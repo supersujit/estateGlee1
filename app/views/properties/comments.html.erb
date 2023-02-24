@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @property %>
+<div class="row"> The comments: </div>
+<%=@comments.each do |comment| %>
+  <%= render comment %>
+<% end %>
+
+<div>
+  <%= link_to "Add a comment", new_property_comment_path(@property) %>
+</div>

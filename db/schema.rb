@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_24_010347) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_012334) do
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_010347) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "history_items", force: :cascade do |t|
+    t.integer "historicizable_id"
+    t.string "historicizable_type"
+    t.integer "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_history_items_on_property_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "title"
     t.string "address_line1"
@@ -30,9 +39,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_010347) do
     t.string "zip"
     t.text "description"
     t.string "picture_url"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "status_updates", force: :cascade do |t|
+    t.integer "status"
+    t.integer "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_status_updates_on_property_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_010347) do
 
   add_foreign_key "comments", "properties"
   add_foreign_key "comments", "users"
+  add_foreign_key "history_items", "properties"
+  add_foreign_key "status_updates", "properties"
 end

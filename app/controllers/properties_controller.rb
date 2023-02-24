@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy ]
+  before_action :set_property, only: %i[ show edit update destroy comments new_comment create_comment]
 
   # GET /properties or /properties.json
   def index
@@ -57,14 +57,32 @@ class PropertiesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
+  def comments
+    @comments = @property.comments
+  end
 
-    # Only allow a list of trusted parameters through.
-    def property_params
-      params.require(:property).permit(:title, :address_line1, :address_line2, :city, :zip, :description, :picture_url, :status)
-    end
+  def new_comment
+    @comment = @property.comments.new
+  end
+
+  def create_comment
+    @property.comments.create(user: current_user, title: comments_params[title], body: comments_params[:body])
+    redirect_to get_property_comments_url(@property)
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def property_params
+    params.require(:property).permit(:title, :address_line1, :address_line2, :city, :zip, :description, :picture_url, :status)
+  end
+
+  def comments_params
+    params.permit(:title, :body)
+  end
 end
