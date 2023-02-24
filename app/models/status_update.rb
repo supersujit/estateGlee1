@@ -6,6 +6,7 @@ class StatusUpdate < ApplicationRecord
   belongs_to :property
   belongs_to :user
 
+
   private
 
   def history_item_summary

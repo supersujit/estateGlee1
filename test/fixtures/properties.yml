@@ -8,7 +8,7 @@ one:
   zip: N54 0KH
   description: Maiores sit fugiat. Neque eum ea. Quia iusto voluptatem. Distinctio et consequatur. Officia id consectetur.
   picture_url: MyString
-  status: 1
+  user: one
 
 two:
   title: Wonderful House
@@ -18,4 +18,4 @@ two:
   zip: NW92 4DU
   description: Soluta ut quibusdam. Eos ut consequatur. Non rerum placeat. Labore excepturi quaerat. Maxime dicta sit.
   picture_url: MyString
-  status: 1
+  user: two

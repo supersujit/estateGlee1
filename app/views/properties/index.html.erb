@@ -5,22 +5,7 @@
       <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h6 class="border-bottom pb-2 mb-0">My Properties</h6>
         <% @properties.each do |property| %>
-          <div class="row list-item-container border-bottom">
-            <%= link_to property_url(property) do %>
-              <div class="row property-title">
-                <p class="fs-4"><%= property.title %></p>
-              </div>
-            <% end %>
-            <div class="row">
-              <p class="fs-5"><%= property.display_address %></p>
-            </div>
-            <div class="row">
-              <p class="fs-5">Status: Random</p>
-            </div>
-            <div class="row">
-              <p class="fs-5">Comments: 7</p>
-            </div>
-          </div>
+          <%= render 'property_list_item', property: property %>
         <% end %>
       </div>
       <nav aria-label="Page navigation example">

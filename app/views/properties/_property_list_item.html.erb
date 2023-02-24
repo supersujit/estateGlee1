@@ -1,0 +1,16 @@
+<div class="row list-item-container border-bottom">
+  <%= link_to property_url(property) do %>
+    <div class="row property-title">
+      <p class="fs-4"><%= property.title %></p>
+    </div>
+  <% end %>
+  <div class="row">
+    <p class="fs-5"><%= property.display_address %></p>
+  </div>
+  <div class="row">
+    <p class="fs-5">Status: <%= property.current_status.status %></p>
+  </div>
+  <div class="row">
+    <p class="fs-5">Comments: <%= property.comments.count.positive? ? (link_to property.comments.count, get_property_comments_path(property)) : '0' %> </p>
+  </div>
+</div>

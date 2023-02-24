@@ -5,14 +5,20 @@
       <h1 class="display-5 fw-bold"><%= @property.title %></h1>
       <h3 class="fw-bold"><%= @property.display_address %></h3>
       <p class="col-md-8 fs-4"><%= @property.description %></p>
-      <p class="col-md-8 fs-4 fw-bold">Current Status: Listed</p>
+      <p class="col-md-8 fs-4 fw-bold">Current Status: <%= @current_status.status %></p>
+      <div class="row col-md-8 mb-2 input-group">
+        <%= form_with(url: update_property_status_path, method: "post") do |form| %>
+          <%= form.hidden_field :property_id, value: property.id %>
+          <div class="col-md-3 mb-2"><%= form.select :status, StatusUpdate.statuses, { selected: StatusUpdate.statuses[@current_status.status] }, { :class => 'form-select' } %></div>
+          <div class="col-md-3"><%= form.submit "Update", { :class => 'btn btn-outline-secondary' } %></div>
+        <% end %>
+      </div>
 
       <div class="container">
-          <div class="row">
-            <div class="col-6 col-md-2 h-5"> <a href="#" class="nav-link p-0">Update Status</a></div>
-            <div class="col-6 col-md-2 h-5"> <%= link_to "View Comments", get_property_comments_path(@property) %></div>
-            <div class="col-6 col-md-2 h-5"> <%= link_to "View History", get_property_history_items_path(@property) %></div>
-          </div>
+        <div class="row">
+          <div class="col-6 ps-0 col-md-2 h-5"> <%= link_to "View Comments", get_property_comments_path(@property) %></div>
+          <div class="col-6 ps-0 col-md-2 h-5"> <%= link_to "View History", get_property_history_items_path(@property) %></div>
+        </div>
       </div>
 
     </div>

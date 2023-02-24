@@ -24,4 +24,11 @@ class CommentTest < ActiveSupport::TestCase
     comment.property_id = nil
     assert_not comment.valid?
   end
+
+  test 'should create a new history item on creation' do
+    comment = comments(:one)
+    assert_difference("HistoryItem.count") do
+      comment.save
+    end
+  end
 end

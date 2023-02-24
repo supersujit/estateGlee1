@@ -3,7 +3,9 @@
 one:
   status: 1
   property: one
+  user: one
 
 two:
   status: 1
   property: two
+  user: two

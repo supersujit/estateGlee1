@@ -1,9 +1,9 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy comments new_comment create_comment history_items]
+  before_action :set_property, only: %i[ show edit update destroy comments new_comment create_comment history_items update_status]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.order(:created_at).last(10)
+    @properties = Property.includes(:comments).order(:created_at).last(10)
   end
 
   # GET /properties/1 or /properties/1.json
@@ -22,6 +22,7 @@ class PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
+    @property.user = current_user
 
     respond_to do |format|
       if @property.save
@@ -74,11 +75,17 @@ class PropertiesController < ApplicationController
     @history_items = @property.history_items.order(created_at: :desc)
   end
 
+  def update_status
+    @property.status_updates.create(user: current_user, status: status_params[:status].to_i)
+    redirect_to get_property_history_items_url(@property), notice: "Property Status was successfully updated."
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_property
     @property = Property.find(params[:id])
+    @current_status = @property.current_status
   end
 
   # Only allow a list of trusted parameters through.
@@ -88,5 +95,9 @@ class PropertiesController < ApplicationController
 
   def comments_params
     params.permit(:title, :body)
+  end
+
+  def status_params
+    params.permit(:status)
   end
 end

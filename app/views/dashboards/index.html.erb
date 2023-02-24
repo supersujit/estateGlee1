@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container dashboard-container">
   <div class="row">
     <div class="col-md-4">
       <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -133,3 +133,9 @@
 
   </div>
 </div>
+
+<script>
+    $( document ).ready(function() {
+        new HT.Property({container: $('.dashboard-container')});
+    });
+</script>
