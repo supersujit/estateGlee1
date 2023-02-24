@@ -45,6 +45,7 @@ gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'faker'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

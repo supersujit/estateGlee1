@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_23_225811) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_000258) do
+  create_table "properties", force: :cascade do |t|
+    t.string "title"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "city"
+    t.string "zip"
+    t.text "description"
+    t.string "picture_url"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

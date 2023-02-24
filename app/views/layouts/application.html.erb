@@ -24,8 +24,8 @@
       <% if current_user %>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
           <a class="me-3 py-2 text-dark text-decoration-none" href="#">Dashboard</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href="#">Search Projects</a>
-          <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
+          <%= link_to 'All Properties', properties_path, class: "me-3 py-2 text-dark text-decoration-none" %>
+          <a class="me-3 py-2 text-dark text-decoration-none" href="#">Profile</a>
           <%= link_to "Log out", destroy_user_session_path, { :method => :delete, :class => "me-3 py-2 text-dark text-decoration-none" } %>
         </nav>
       <% end %>
