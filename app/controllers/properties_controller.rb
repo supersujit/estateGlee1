@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = Property.order(:created_at).last(10)
   end
 
   # GET /properties/1 or /properties/1.json

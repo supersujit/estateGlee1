@@ -1,14 +1,39 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Properties</h1>
-
-<div id="properties">
-  <% @properties.each do |property| %>
-    <%= render property %>
-    <p>
-      <%= link_to "Show this property", property %>
-    </p>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">My Properties</h6>
+        <% @properties.each do |property| %>
+          <div class="row list-item-container border-bottom">
+            <%= link_to property_url(property) do %>
+              <div class="row property-title">
+                <p class="fs-4"><%= property.title %></p>
+              </div>
+            <% end %>
+            <div class="row">
+              <p class="fs-5"><%= property.display_address %></p>
+            </div>
+            <div class="row">
+              <p class="fs-5">Status: <%= property.status %></p>
+            </div>
+            <div class="row">
+              <p class="fs-5">Comments: 7</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
 
 <%= link_to "New property", new_property_path %>
