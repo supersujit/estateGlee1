@@ -66,7 +66,7 @@ class PropertiesController < ApplicationController
   end
 
   def create_comment
-    @property.comments.create(user: current_user, title: comments_params[title], body: comments_params[:body])
+    @property.comments.create(user: current_user, title: comments_params[:title], body: comments_params[:body])
     redirect_to get_property_comments_url(@property)
   end
 
