@@ -58,7 +58,7 @@ class PropertiesController < ApplicationController
   end
 
   def comments
-    @comments = @property.comments
+    @comments = @property.comments.order(created_at: :desc)
   end
 
   def new_comment

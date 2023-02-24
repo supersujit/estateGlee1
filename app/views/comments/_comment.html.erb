@@ -1,17 +1,12 @@
 <div id="<%= dom_id comment %>">
-  <p>
-    <strong>Title:</strong>
-    <%= comment.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= comment.body %>
-  </p>
-
-  <p>
-    <strong>Created by:</strong>
-    <%= comment.user.email %>
-  </p>
-
+  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div>
+        <h6 class="mb-0"><%= comment.title %></h6>
+        <p class="mb-0 opacity-75"><%= comment.body %></p>
+        <p class="mb-0 opacity-75">by: <%= comment.user.email %></p>
+      </div>
+      <small class="opacity-50 text-nowrap"><%= time_ago_in_words comment.created_at %></small>
+    </div>
+  </a>
 </div>

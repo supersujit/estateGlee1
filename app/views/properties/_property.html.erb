@@ -1,37 +1,20 @@
 <div id="<%= dom_id property %>">
-  <p>
-    <strong>Title:</strong>
-    <%= property.title %>
-  </p>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <%= link_to "Edit", edit_property_path(@property) %>
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold"><%= @property.title %></h1>
+      <h3 class="fw-bold"><%= @property.display_address %></h3>
+      <p class="col-md-8 fs-4"><%= @property.description %></p>
+      <p class="col-md-8 fs-4 fw-bold">Current Status: Listed</p>
 
-  <p>
-    <strong>Address line1:</strong>
-    <%= property.address_line1 %>
-  </p>
+      <div class="container">
+          <div class="row">
+            <div class="col-6 col-md-2 h-5"> <a href="#" class="nav-link p-0">Update Status</a></div>
+            <div class="col-6 col-md-2 h-5"> <%= link_to "View Comments", get_property_comments_path(@property) %></div>
+            <div class="col-6 col-md-2 h-5"> <%= link_to "View History", get_property_comments_path(@property) %></div>
+          </div>
+      </div>
 
-  <p>
-    <strong>Address line2:</strong>
-    <%= property.address_line2 %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= property.city %>
-  </p>
-
-  <p>
-    <strong>Zip:</strong>
-    <%= property.zip %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= property.description %>
-  </p>
-
-  <p>
-    <strong>Picture url:</strong>
-    <%= property.picture_url %>
-  </p>
-
+    </div>
+  </div>
 </div>
